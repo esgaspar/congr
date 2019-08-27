@@ -3,6 +3,8 @@ import * as bodyParser from "body-parser";
 import { ContactRoutes } from "./contacts/contactRoutes";
 import { FamilyRoutes } from "./family/familyRoutes";
 import { DesignationsRoutes } from "./designations/designationsRoutes";
+import { MeetingRoutes } from "./meeting/meetingRoutes";
+import { CongregationRoutes } from "./congregation/congregationRoutes";
 import * as mongoose from "mongoose";
 
 
@@ -10,6 +12,8 @@ class App {
 
     public app: express.Application;
     public contactRoutes: ContactRoutes = new ContactRoutes();
+    public congregationRoutes: CongregationRoutes = new CongregationRoutes();
+    public meetingRoutes: MeetingRoutes = new MeetingRoutes();
     public familyRoutes: FamilyRoutes = new FamilyRoutes();
     public designationsRoutes: DesignationsRoutes = new DesignationsRoutes();
     public mongoUrl: string = 'mongodb://localhost:27017/CRMdb';
@@ -19,6 +23,8 @@ class App {
     constructor() {
         this.app = express();
         this.config();
+        this.congregationRoutes.routes(this.app);
+        this.meetingRoutes.routes(this.app);
         this.contactRoutes.routes(this.app);
         this.familyRoutes.routes(this.app);
         this.designationsRoutes.routes(this.app);

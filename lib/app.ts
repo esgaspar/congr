@@ -6,6 +6,7 @@ import { DesignationsRoutes } from "./designations/designationsRoutes";
 import { MeetingRoutes } from "./meeting/meetingRoutes";
 import { CongregationRoutes } from "./congregation/congregationRoutes";
 import * as mongoose from "mongoose";
+import * as cors from "cors";
 
 
 class App {
@@ -32,6 +33,7 @@ class App {
     }
 
     private config(): void {
+        this.app.use(cors());
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
     }

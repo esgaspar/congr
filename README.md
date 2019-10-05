@@ -7,7 +7,7 @@ mongoDb - 4.2.0<br/>
 <br/>
 <br/>
 <h6>Rodando mongo db localmente</h6> 
-${mongo_dir}/mongod.exe --dbpath c:\data\db
+$mongod --dbpath c:\data\db
 <br/>
 <h6>Baixando as dependencias</h6> 
 $npm install

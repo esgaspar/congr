@@ -30,12 +30,12 @@ export class ContactRoutes {
 
             // POST endpoint
             .post(this.contactController.addNewContact)
+            .put(this.contactController.updateContact)
 
         // Contact detail
         app.route(this.root + ':contactId')
             // get specific contact
             .get(this.contactController.getContactWithID)
-            .put(this.contactController.updateContact)
             .delete(this.contactController.deleteContact)
     }
 }

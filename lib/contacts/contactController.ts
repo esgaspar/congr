@@ -23,7 +23,7 @@ export class ContactController {
                 res.send(err);
             }
             res.json(contact);
-        });
+        }).sort({ created_date: -1 });
     }
 
     public getContactWithID(req: Request, res: Response) {
@@ -36,7 +36,8 @@ export class ContactController {
     }
 
     public updateContact(req: Request, res: Response) {
-        Contact.findByIdAndUpdate({ _id: req.params.contactId }, req.body, { new: true }, (err, contact) => {
+        let editContact = new Contact(req.body);
+        Contact.findByIdAndUpdate({ _id: editContact._id }, editContact, { new: true }, (err, contact) => {
             if (err) {
                 res.send(err);
             }
@@ -47,9 +48,11 @@ export class ContactController {
     public deleteContact(req: Request, res: Response) {
         Contact.remove({ _id: req.params.contactId }, (err, contact) => {
             if (err) {
+                console.log("Erro ao deletar contato: " + req.params.contactId);
                 res.send(err);
+            } else {
+                res.json({ message: 'Successfully deleted contact!' });
             }
-            res.json({ message: 'Successfully deleted contact!' });
         });
     }
 

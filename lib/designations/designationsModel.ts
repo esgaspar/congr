@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 export const DesignationsSchema = new Schema({
     title: { type: String, required: 'Enter a title designation' },
+    type: { type: String},
     time: { type: String },
     temp: { type: String },
     study: {

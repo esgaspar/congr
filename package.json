@@ -8,7 +8,7 @@
     "dev": "ts-node ./lib/server.ts",
     "start": "nodemon ./lib/server.ts",
     "prod": "npm run build && npm run start",
-    "debug": "node --nolazy --inspect-brk=9229 ./dist/server.js",
+    "debug": "tsc && node --nolazy --inspect-brk=9229 ./dist/server.js",
     "build-exec": "pkg -t latest-windows-x64 -o ./dist ./dist/server.js"
   },
   "author": "",

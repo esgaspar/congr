@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 export const MeetingSchema = new Schema({
   day: { type: Date },
   date: { type: Date },
+  dateString : {type: String},
   hour: { type: Date },
   meetingType: { type: String },
   congregation: { congragationId: { type: String } },

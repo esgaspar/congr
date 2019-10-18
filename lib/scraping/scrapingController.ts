@@ -8,13 +8,14 @@ import * as moment from "moment";
 const MeetingDB = mongoose.model("meetings", MeetingSchema);
 const langs = [
   { lang: "pt", langId: "lp-t", cod: "r5" },
-  { lang: "ht", langId: "lp-cr", cod: "r60" }
+  { lang: "ht", langId: "lp-cr", cod: "r60" },
+  { lang: "ar", langId: "lp-a", cod: "r39" }
 ];
 
 export class ScrapingController {
   public lang = { lang: "", langId: "", cod: "" };
   public meetings = [];
-  public position = 2;
+  public position = 1;
 
   public pGroup =   ".pGroup ";
   public midweek = ".docClass-106 "
@@ -64,15 +65,8 @@ export class ScrapingController {
   };
 
   public async newDesignation(meeting, title, session, pGroup, tag , html, dateString){
-    return await this.addDesignation(
-      meeting,
-      await this.fillDesignation(
-        title,
-        session, pGroup, 
-        tag,
-        html,
-        dateString
-      ),
+    return await this.addDesignation( meeting,
+      await this.fillDesignation( title, session, pGroup, tag, html, dateString ),
       title, session, pGroup, tag , html, dateString
     );
   }
@@ -82,7 +76,7 @@ export class ScrapingController {
     //momentDatebtract(3, "months");
     let stop = false;
     while (!stop) {
-      this.position = 2;
+      this.position = 1;
       let meeting = {
         date: {},
         meetingType: {},
@@ -95,8 +89,10 @@ export class ScrapingController {
       meeting.meetingType = "Meio de semana";
       let adress = `https://wol.jw.org/${this.lang.lang}/wol/dt/${this.lang.cod}/${this.lang.langId}/${dateString}`;
       await rp(adress)
-        .then(async html => {
-          let weekReading = await this.fillDesignation( "weekReading", "", "",` #p${this.position} > a > strong`, html, dateString);
+      .then(async html => {
+        await this.newDesignation(meeting, "week", "", "" , ` #p${this.position}` , html, dateString);
+        
+        let weekReading = await this.fillDesignation( "weekReading", "", "",` #p${this.position} > a > strong`, html, dateString);
           if (!weekReading.title) {
             stop = true;
             return;

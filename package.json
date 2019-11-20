@@ -2,9 +2,14 @@
   "name": "congr",
   "version": "1.0.0",
   "description": "meetings organizer",
+  "engines": {
+    "node": "12.13.0",
+    "npm":"6.12.0"
+  },
   "main": "server.js",
   "scripts": {
-    "build": "tsc",
+    "tsc": "tsc",
+    "postinstall": "npm run ts",
     "dev": "ts-node ./lib/server.ts",
     "start": "nodemon ./lib/server.ts",
     "prod": "npm run build && npm run start",
@@ -24,7 +29,10 @@
     "nodemon": "^1.19.1",
     "puppeteer": "^1.20.0",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "ts-node": "^8.5.2",
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.7.2"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.13",

@@ -17,7 +17,9 @@ class App {
   public scrapingRoutes: ScrapingRoutes = new ScrapingRoutes();
   public familyRoutes: FamilyRoutes = new FamilyRoutes();
   public designationsRoutes: DesignationsRoutes = new DesignationsRoutes();
-  public mongoUrl: string = "mongodb://localhost:27017/CRMdb";
+
+
+  public mongoUrl: string = process.env.MONGODB_URI || "mongodb://localhost:27017/CRMdb";
 
   constructor() {
     this.app = express();

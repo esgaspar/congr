@@ -1,7 +1,9 @@
 import app from './app';
 import * as http from 'http';
 import * as fs from 'fs';
-const PORT = 3000;
+require('dotenv').config();
+
+const PORT = process.env.PORT || 3000;
 const httpsOptions = {
     key: fs.readFileSync('config/key.pem'),
     cert: fs.readFileSync('config/cert.pem')

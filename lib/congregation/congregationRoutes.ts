@@ -8,7 +8,7 @@ export class CongregationRoutes {
 
     public routes(app): void {
 
-        app.route('/')
+        app.route('/congregation')
             .get((req: Request, res: Response) => {
                 res.status(200).send({
                     message: 'GET request successfulll!!!!'
@@ -16,7 +16,7 @@ export class CongregationRoutes {
             })
 
         // Congregation 
-        app.route(this.root)
+        app.route(this.root+'manage')
             .get((req: Request, res: Response, next: NextFunction) => {
                 // middleware
                 console.log(`Request from: ${req.originalUrl}`);

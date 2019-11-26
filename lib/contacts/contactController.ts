@@ -9,10 +9,15 @@ export class ContactController {
     public addNewContact(req: Request, res: Response) {
         let newContact = new Contact(req.body);
 
+        console.log('Salvando...', newContact);
+
+
         newContact.save((err, contact) => {
             if (err) {
                 res.send(err);
+                console.log('erro ao salvar ...', err);
             }
+            console.log('Salvo...', contact);
             res.json(contact);
         });
     }
@@ -30,8 +35,13 @@ export class ContactController {
         Contact.findById(req.params.contactId, (err, contact) => {
             if (err) {
                 res.send(err);
+                return
             }
-            res.json(contact);
+            try {
+                res.json(contact);
+            } catch (error) {
+                console.log("error", error);
+            }
         });
     }
 
@@ -53,6 +63,18 @@ export class ContactController {
             } else {
                 res.json({ message: 'Successfully deleted contact!' });
             }
+        });
+    }
+
+    public login(req: Request, res: Response) {
+        console.log("req.body", req.body);
+        let user = new Contact(req.body);
+        console.log("user", user);
+        Contact.find({ 'username': user.username, 'password': user.password }, (err, contact) => {
+            if (err) {
+                res.send(err);
+            }
+            res.json(contact);
         });
     }
 

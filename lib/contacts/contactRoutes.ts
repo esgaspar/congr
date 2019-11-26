@@ -8,7 +8,7 @@ export class ContactRoutes {
 
     public routes(app): void {
 
-        app.route('/')
+        app.route('/contact')
             .get((req: Request, res: Response) => {
                 res.status(200).send({
                     message: 'GET request successfulll!!!!'
@@ -16,7 +16,7 @@ export class ContactRoutes {
             })
 
         // Contact 
-        app.route(this.root)
+        app.route(this.root + 'manager')
             .get((req: Request, res: Response, next: NextFunction) => {
                 // middleware
                 console.log(`Request from: ${req.originalUrl}`);
@@ -33,9 +33,13 @@ export class ContactRoutes {
             .put(this.contactController.updateContact)
 
         // Contact detail
-        app.route(this.root + ':contactId')
+        app.route(this.root + 'manager'+ ':contactId')
             // get specific contact
             .get(this.contactController.getContactWithID)
             .delete(this.contactController.deleteContact)
+
+        app.route(this.root + 'authenticate')
+            // get specific contact
+            .post(this.contactController.login)
     }
 }

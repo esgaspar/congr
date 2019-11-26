@@ -3,8 +3,10 @@ import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 export const ContactSchema = new Schema({
+    username: {type: String, required: 'Enter a username'},
     firstName: { type: String, required: 'Enter a first name' },
     lastName: { type: String, required: 'Enter a last name' },
+    password : {type: String, required: 'Enter a password'},
     batismDate: { type: Date },
     birthDate: { type: Date },
     sexGender: { type: String, required: 'Enter a sex gender' },

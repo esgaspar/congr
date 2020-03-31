@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
-import { ContactRoutes } from "./contacts/contactRoutes";
+import { UserRoutes } from "./users/userRoutes";
 import { FamilyRoutes } from "./family/familyRoutes";
 import { DesignationsRoutes } from "./designations/designationsRoutes";
 import { MeetingRoutes } from "./meeting/meetingRoutes";
@@ -11,7 +11,7 @@ import * as cors from "cors";
 
 class App {
   public app: express.Application;
-  public contactRoutes: ContactRoutes = new ContactRoutes();
+  public userRoutes: UserRoutes = new UserRoutes();
   public congregationRoutes: CongregationRoutes = new CongregationRoutes();
   public meetingRoutes: MeetingRoutes = new MeetingRoutes();
   public scrapingRoutes: ScrapingRoutes = new ScrapingRoutes();
@@ -26,7 +26,7 @@ class App {
     this.config();
     this.congregationRoutes.routes(this.app);
     this.meetingRoutes.routes(this.app);
-    this.contactRoutes.routes(this.app);
+    this.userRoutes.routes(this.app);
     this.familyRoutes.routes(this.app);
     this.designationsRoutes.routes(this.app);
     this.scrapingRoutes.routes(this.app);

@@ -2,17 +2,21 @@ import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-export const ContactSchema = new Schema({
-    username: {type: String, required: 'Enter a username'},
-    firstName: { type: String, required: 'Enter a first name' },
-    lastName: { type: String, required: 'Enter a last name' },
-    password : {type: String, required: 'Enter a password'},
+export const UserSchema = new Schema({
+    username: { type: String },
+    firstName: { type: String },
+    lastName: { type: String },
+    password: { type: String },
     batismDate: { type: Date },
     birthDate: { type: Date },
-    sexGender: { type: String, required: 'Enter a sex gender' },
+    sexGender: { type: String },
     familyId: { type: String },
     headFamily: { type: Boolean },
     dc50Status: { type: Boolean },
+    roles: [{
+        name: { type: String },
+        level: { type: String },
+    }],
     congregation: { congregationId: { type: String } },
     status: {
         situation: { type: String },

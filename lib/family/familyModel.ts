@@ -7,8 +7,8 @@ export const FamilySchema = new Schema({
         type: String,
         required: 'Enter a last name of family'
     },
-    family_contacts: [{
-        contact_id: {
+    family_users: [{
+        user_id: {
             type: String,
         }
     }],

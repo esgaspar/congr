@@ -19,13 +19,13 @@ export const DesignationsSchema = new Schema({
     privilege: { type: String },
     designed: {
         substitution: { type: Boolean },
-        responsible: { contactId: { type: String } },
-        substitute: { contactId: { type: String } }
+        responsible: { userId: { type: String } },
+        substitute: { userId: { type: String } }
     },
     assistant: {
         substitution: { type: Boolean },
-        responsible: { contactId: { type: String } },
-        substitute: { contactId: { type: String } }
+        responsible: { userId: { type: String } },
+        substitute: { userId: { type: String } }
     },
     meeting: { meetingId: { type: String } },
     created_date: { type: Date, default: Date.now }

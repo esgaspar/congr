@@ -19,9 +19,9 @@ export const UserSchema = new Schema({
     }],
     congregation: { congregationId: { type: String } },
     status: {
-        situation: { type: String },
-        active: { type: Boolean },
-        date: { type: Date }
+        situation: { type: String, default: 'Inativo' },
+        active: { type: Boolean, default: false },
+        date: { type: Date, default: Date.now }
     },
     privileges: [{
         privilege: { type: String },

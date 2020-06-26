@@ -1,22 +1,22 @@
 import { Request, Response, NextFunction } from "express";
-import { UserController } from "./userController";
+import { TerritoryController } from "./territoryController";
 
-export class UserRoutes {
+export class TerritoryRoutes {
 
-    public userController: UserController = new UserController()
-    private root = "/user/";
+    public territoryController: TerritoryController = new TerritoryController()
+    private root = "/territory/";
     private key = 'e56d3ca5d6ab8eb246a64d966fb72b5cde48b740';
 
     public routes(app): void {
 
-        app.route('/user')
+        app.route('/territory')
             .get((req: Request, res: Response) => {
                 res.status(200).send({
                     message: 'GET request successfulll!!!!'
                 })
             })
 
-        // User 
+        // Territory 
         app.route(this.root + 'manager')
             .get((req: Request, res: Response, next: NextFunction) => {
                 // middleware
@@ -27,20 +27,16 @@ export class UserRoutes {
                 } else {
                     next();
                 }
-            }, this.userController.list)
+            }, this.territoryController.list)
 
             // POST endpoint
-            .post(this.userController.add)
-            .put(this.userController.update)
+            .post(this.territoryController.add)
+            .put(this.territoryController.update)
 
-        // User detail
-        app.route(this.root + 'manager/'+ ':userId')
-            // get specific user
-            .get(this.userController.getById)
-            .delete(this.userController.delete)
-
-        app.route(this.root + 'authenticate')
-            // get specific user
-            .post(this.userController.login)
+        // Territory detail
+        app.route(this.root + 'manager/' + ':territoryId')
+            // get specific territory
+            .get(this.territoryController.getById)
+            .delete(this.territoryController.delete)
     }
 }

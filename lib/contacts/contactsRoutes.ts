@@ -1,22 +1,23 @@
 import { Request, Response, NextFunction } from "express";
-import { UserController } from "./userController";
+import { ContactController } from "./contactsController";
 
-export class UserRoutes {
+export class ContactRoutes {
 
-    public userController: UserController = new UserController()
-    private root = "/user/";
+    public contactController: ContactController = new ContactController()
+    private root = "/contact/";
     private key = 'e56d3ca5d6ab8eb246a64d966fb72b5cde48b740';
 
     public routes(app): void {
 
-        app.route('/user')
+        app.route('/contact')
             .get((req: Request, res: Response) => {
+                console.log("contact get")
                 res.status(200).send({
                     message: 'GET request successfulll!!!!'
                 })
             })
 
-        // User 
+        // Contact 
         app.route(this.root + 'manager')
             .get((req: Request, res: Response, next: NextFunction) => {
                 // middleware
@@ -27,20 +28,16 @@ export class UserRoutes {
                 } else {
                     next();
                 }
-            }, this.userController.list)
+            }, this.contactController.list)
 
             // POST endpoint
-            .post(this.userController.add)
-            .put(this.userController.update)
+            .post(this.contactController.add)
+            .put(this.contactController.update)
 
-        // User detail
-        app.route(this.root + 'manager/'+ ':userId')
-            // get specific user
-            .get(this.userController.getById)
-            .delete(this.userController.delete)
-
-        app.route(this.root + 'authenticate')
-            // get specific user
-            .post(this.userController.login)
+        // Contact detail
+        app.route(this.root + 'manager/' + ':contactId')
+            // get specific contact
+            .get(this.contactController.getById)
+            .delete(this.contactController.delete)
     }
 }

@@ -14,7 +14,7 @@ export class UserRoutes {
                 res.status(200).send({
                     message: 'GET request successfulll!!!!'
                 })
-            })
+            }) 
 
         // User 
         app.route(this.root + 'manager')
